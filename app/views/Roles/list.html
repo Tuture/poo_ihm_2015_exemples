@@ -20,7 +20,7 @@
 </br>
 
 <div ng-repeat="role in roles | filter:searchText">
-  <div class="input-group input-group-lg">
+  <div class="input-group input-group-lg table-bordered img-rounded">
       <h5>{{role.name}}</h5>
       <span class="input-group-btn">
         <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="deleteRole(role.id);reloadPage()" ng-confirm-click="Êtes-vous sûr de vouloir supprimer ?"></button>
