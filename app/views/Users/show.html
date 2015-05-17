@@ -1,4 +1,53 @@
-<div>
-<p>Name: {{currentUser.name}}</p>
-<p>Surname: {{currentUser.surname}}</p>
+<div class="col-md-12">
+    <fieldset>
+      <div class="form-group">
+        <div data-ng-show="error" class="text-center text-danger">
+          <div class="alert alert-danger" role="alert">
+            <strong data-ng-bind="error" ></strong>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="control-label">Nom : </label>
+          <div class="controls">
+            {{currentUser.name}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Prénom : </label>
+          <div class="controls">
+            {{currentUser.surname}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Email : </label>
+          <div class="controls">
+            {{currentUser.email}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Site web : </label>
+          <div class="controls">
+            {{currentUser.website}}
+          </div>
+        </div>
+
+        <div ng-repeat="project in projectsForUser">
+          <div class="input-group input-group-lg">
+            <a  href="#/projects/{{project.id}}" class="list-group-item">
+              <h5>{{project.title}}</h5>
+            </a>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-warning glyphicon glyphicon-edit" data-toggle="modal" data-target="#updateModal" ng-click="initProject(project)"></button>
+        <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="delete(project.id);reloadPage()"></button>
+      </span>
+          </div>
+        </div>
+
+      </div>
+    </fieldset>
+  <button type="button" class="btn btn-warning glyphicon glyphicon-edit small" ng-click="modify(currentUser.id)"></button>
+  <button type="button" class="btn btn-danger glyphicon glyphicon-trash small" ng-click="deleteShow(currentUser.id); reloadPage()"></button>
+  </button>
 </div>

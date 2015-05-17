@@ -1,0 +1,34 @@
+<div class="col-md-12">
+  <fieldset>
+    <div class="form-group">
+      <div data-ng-show="error" class="text-center text-danger">
+        <div class="alert alert-danger" role="alert">
+          <strong data-ng-bind="error" ></strong>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="control-label">Titre : </label>
+        <div class="controls">
+          {{currentProject.title}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Description : </label>
+        <div class="controls">
+          {{currentProject.description}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Année : </label>
+        <div class="controls">
+          {{currentProject.year}}
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <button type="button" class="btn btn-warning glyphicon glyphicon-edit small" ng-click="modify(currentProject.id)"></button>
+  <button type="button" class="btn btn-danger glyphicon glyphicon-trash small" ng-click="deleteShow(currentProject.id); reloadPage()"></button>
+  </button>
+</div>

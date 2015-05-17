@@ -1,0 +1,160 @@
+<div class="page-header">
+  <h1>Liste des Projets :</h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-8">
+    <div class="input-group input-group-lg">
+      <input type="text" name="searchName" class="form-control btn-lg" ng-model="searchText" placeholder="Saisir un titre de projet ...">
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4 text-center">
+    <button type="button" class="btn btn-success text-center" data-toggle="modal" data-target="#addModal">
+      <i class="glyphicon glyphicon-plus"></i><br>
+      Ajouter un Projet
+    </button>
+  </div>
+</div>
+
+</br>
+</br>
+
+<div ng-repeat="project in projects | filter:searchText">
+  <div class="input-group input-group-lg">
+    <a  href="#/projects/{{project.id}}" class="list-group-item">
+      <h5>{{project.title}}</h5>
+    </a>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-warning glyphicon glyphicon-edit" data-toggle="modal" data-target="#updateModal" ng-click="initProject(project)"></button>
+        <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="delete(project.id);reloadPage()"></button>
+      </span>
+  </div>
+</div>
+</div>
+
+<!-- // AJOUT -->
+
+<form name="addForm">
+  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="addModalLabel">Nouveau Projet</h4>
+        </div>
+
+        <div class="modal-body">
+          <fieldset>
+            <div class="row">
+              <div class="form-group">
+                <div data-ng-show="error" class="text-center text-danger">
+                  <div class="alert alert-danger" role="alert">
+                    <strong data-ng-bind="error" ></strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label" for="titre">Titre</label>
+                  <div class="controls">
+                    <input type="text" id="titre" name="titre" ng-model="titre" class="form-control" placeholder="Titre ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="desc" >Description</label>
+                  <div class="controls">
+                    <input type="text" id="desc" class="form-control" name="desc" ng-model="desc" placeholder="Description ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="annee">Année</label>
+                  <div class="controls">
+                    <input type="text" value="2015" id="annee" class="form-control" name="annee" ng-model="annee" placeholder="Année ...">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-success btn-lg" ng-click="add();reloadParentPage()">
+            Ajouter
+          </button>
+          <button class="btn btn-warning btn-lg" class="close" data-dismiss="modal">
+            Annuler
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<!-- // MODIFIER -->
+
+<form name="modifForm">
+  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="updateModalLabel">Modification Projet</h4>
+        </div>
+
+        <div class="modal-body">
+          <fieldset>
+            <div class="row">
+              <div class="form-group">
+                <div data-ng-show="error" class="text-center text-danger">
+                  <div class="alert alert-danger" role="alert">
+                    <strong data-ng-bind="error" ></strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label" for="idProject">Id</label>
+                  <div class="controls">
+                    <input type="text" id="idProject" name="idProject" ng-model="idProject" class="form-control" placeholder="Id ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="titreProject">Titre</label>
+                  <div class="controls">
+                    <input type="text" id="titreProject" name="titreProject" ng-model="titreProject" class="form-control" placeholder="Titre ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="descProject" >Description</label>
+                  <div class="controls">
+                    <input type="text" id="descProject" class="form-control" name="descProject" ng-model="descProject" placeholder="Description ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="anneeProject">Année</label>
+                  <div class="controls">
+                    <input type="text" value="2015" id="anneeProject" class="form-control" name="anneeProject" ng-model="anneeProject" placeholder="Année ...">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-success btn-lg" ng-click="updateProject();reloadParentPage()">
+            Valider
+          </button>
+          <button class="btn btn-warning btn-lg" class="close" data-dismiss="modal">
+            Annuler
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>

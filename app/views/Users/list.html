@@ -1,6 +1,173 @@
-<div>
-<h3>Liste des utilisateurs:</h3>
-<ul>
-<li ng-repeat="user in users"> {{user.name}}, {{user.surname}}</li>
-</ul>
+  <div class="page-header">
+    <h1>Liste des utilisateurs:</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="input-group input-group-lg">
+        <input type="text" name="searchName" class="form-control btn-lg" ng-model="searchText" placeholder="Saisir un nom...">
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 text-center">
+      <button type="button" class="btn btn-success text-center" data-toggle="modal" data-target="#addModal">
+        <i class="glyphicon glyphicon-plus"></i><br>
+        Ajouter un Utilisateur
+      </button>
+    </div>
+  </div>
+
+  </br>
+  </br>
+
+  <div ng-repeat="user in users | filter:searchText">
+    <div class="input-group input-group-lg">
+      <a  href="#/users/{{user.id}}" class="list-group-item" ng-click="getProjectsforUser(user.id)">
+        <h5>{{user.name}}, {{user.surname}}</h5>
+      </a>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-warning glyphicon glyphicon-edit" data-toggle="modal" data-target="#updateModal" ng-click="initUser(user)"></button>
+        <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="delete(user.id);reloadPage()" ng-confirm-click="Êtes-vous sûr de vouloir supprimer ?"></button>
+      </span>
+    </div>
+  </div>
 </div>
+
+<!-- AJOUT -->
+
+<form name="addForm">
+  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="addModalLabel">Nouvel utilisateur</h4>
+        </div>
+
+        <div class="modal-body">
+            <fieldset>
+              <div class="row">
+                <div class="form-group">
+                  <div data-ng-show="error" class="text-center text-danger">
+                    <div class="alert alert-danger" role="alert">
+                      <strong data-ng-bind="error" ></strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label" for="nomUser">Nom</label>
+                    <div class="controls">
+                      <input type="text" id="nomUser" name="nomUser" ng-model="nomUser" class="form-control" placeholder="Nom ...">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="prenom" >Prénom</label>
+                    <div class="controls">
+                      <input type="text" id="prenom" class="form-control" name="prenomUser" ng-model="prenomUser" placeholder="Prénom ...">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="email">Email</label>
+                    <div class="controls">
+                      <input type="email" id="email" class="form-control" name="emailUser" ng-model="emailUser" placeholder="Email ...">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="siteweb">Site web</label>
+                    <div class="controls">
+                      <input type="text" id="siteweb" class="form-control" name="sitewebUser" placeholder="Site web ..." ng-model="sitewebUser">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-success btn-lg" ng-click="add();reloadParentPage()">
+            Ajouter
+          </button>
+          <button class="btn btn-warning btn-lg" class="close" data-dismiss="modal">
+            Annuler
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>
+
+
+  <!-- MODIFIER -->
+
+  <form name="modifForm">
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modifModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modifModalLabel">Modification utilisateur</h4>
+          </div>
+
+          <div class="modal-body">
+            <fieldset>
+              <div class="row">
+                <div class="form-group">
+                  <div data-ng-show="error" class="text-center text-danger">
+                    <div class="alert alert-danger" role="alert">
+                      <strong data-ng-bind="error" ></strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label" for="idUserUpdate">Nom</label>
+                  <div class="controls">
+                    <input type="text" id="idUserUpdate" name="idUserUpdate" ng-model="idUserUpdate" class="form-control" placeholder="Nom ...">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label" for="nomUserUpdate">Nom</label>
+                    <div class="controls">
+                      <input type="text" id="nomUserUpdate" name="nomUserUpdate" ng-model="nomUserUpdate" class="form-control" placeholder="Nom ...">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="prenomUserUpdate" >Prénom</label>
+                    <div class="controls">
+                      <input type="text" id="prenomUserUpdate" class="form-control" name="prenomUserUpdate" ng-model="prenomUserUpdate" placeholder="Prénom ...">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="emailUserUpdate">Email</label>
+                    <div class="controls">
+                      <input type="email" id="emailUserUpdate" class="form-control" name="emailUserUpdate" ng-model="emailUserUpdate" placeholder="Email ...">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="sitewebUserUpdate">Site web</label>
+                    <div class="controls">
+                      <input type="text" id="sitewebUserUpdate" class="form-control" name="sitewebUserUpdate" placeholder="Site web ..." ng-model="sitewebUserUpdate">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-success btn-lg" ng-click="updateUser();reloadParentPage()">
+              Valider
+            </button>
+            <button class="btn btn-warning btn-lg" class="close" data-dismiss="modal">
+              Annuler
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
