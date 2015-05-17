@@ -25,6 +25,7 @@ angular.module('pooIhmExemplesApp')
         .success(function(data) {
           if (data.status == "success") {
             $scope.currentProject = data.data;
+            $scope.getUsersforProject($routeParams.projectId);
           }
         });
     }
@@ -41,6 +42,8 @@ angular.module('pooIhmExemplesApp')
       $scope.titreProject = projectToUpdate.title;
       $scope.descProject = projectToUpdate.description;
       $scope.anneeProject = projectToUpdate.annee;
+
+
     };
 
     $scope.updateProject = function() {
@@ -68,11 +71,32 @@ angular.module('pooIhmExemplesApp')
 
       $http.post('http://poo-ihm-2015-rest.herokuapp.com/api/Projects/', projectData)
         .success(function (data, status) {
-          window.close();
-          alert("ajout avec success !");
+          //alert("ajout avec success !");
         });
     };
 
+    $('#addModal').on('hidden.bs.modal', function () {
+      window.location.reload(true);
+    });
+    $('#updateModal').on('hidden.bs.modal', function () {
+      window.location.reload(true);
+    });
+
     $scope.reloadPage = function(){ window.location.reload();};
+
+    $scope.getUsersforProject = function(projectId) {
+      $http.get('http://poo-ihm-2015-rest.herokuapp.com/api/Projects/' + projectId + '/Users')
+        .success(function(data) {
+          $scope.usersForProject = data.data;
+        });
+    };
+
+    $scope.deleteUserFromProject = function(projectId, userId) {
+     // alert(projectId + " / " + userId);
+      $http.delete('http://poo-ihm-2015-rest.herokuapp.com/api/Projects/' + projectId + '/Users/' + userId)
+        .success(function(data) {
+          alert("utilisateur suprimer");
+        });
+    };
 
   }])

@@ -1,0 +1,78 @@
+<div class="page-header">
+  <h1>Liste des Roles:</h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-8">
+    <div class="input-group input-group-lg">
+      <input type="text" name="searchName" class="form-control btn-lg" ng-model="searchText" placeholder="Saisir un role ...">
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4 text-center">
+    <button type="button" class="btn btn-success text-center" data-toggle="modal" data-target="#addModal">
+      <i class="glyphicon glyphicon-plus"></i><br>
+      Ajouter un Role
+    </button>
+  </div>
+</div>
+
+</br>
+</br>
+
+<div ng-repeat="role in roles | filter:searchText">
+  <div class="input-group input-group-lg">
+      <h5>{{role.name}}</h5>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="deleteRole(role.id);reloadPage()" ng-confirm-click="Êtes-vous sûr de vouloir supprimer ?"></button>
+      </span>
+  </div>
+</div>
+</div>
+
+<!-- AJOUT -->
+
+<form name="addForm">
+  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="addModalLabel">Nouveau Role</h4>
+        </div>
+
+        <div class="modal-body">
+          <fieldset>
+            <div class="row">
+              <div class="form-group">
+                <div data-ng-show="error" class="text-center text-danger">
+                  <div class="alert alert-danger" role="alert">
+                    <strong data-ng-bind="error" ></strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label" for="name">Role</label>
+                  <div class="controls">
+                    <input type="text" id="name" name="name" ng-model="name" class="form-control" placeholder="Role ...">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-success btn-lg" ng-click="addRole();reloadParentPage()" class="close" data-dismiss="modal">
+            Ajouter
+          </button>
+          <button class="btn btn-warning btn-lg" class="close" data-dismiss="modal">
+            Annuler
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>

@@ -85,7 +85,7 @@
         </div>
 
         <div class="modal-footer">
-          <button class="btn btn-success btn-lg" ng-click="add();reloadParentPage()">
+          <button class="btn btn-success btn-lg" ng-click="add();reloadParentPage()" class="close" data-dismiss="modal">
             Ajouter
           </button>
           <button class="btn btn-warning btn-lg" class="close" data-dismiss="modal">
@@ -123,7 +123,7 @@
                 </div>
                 <div class="col-sm-6">
                 <div class="form-group">
-                  <label class="control-label" for="idUserUpdate">Nom</label>
+                  <label class="control-label" for="idUserUpdate">Id</label>
                   <div class="controls">
                     <input type="text" id="idUserUpdate" name="idUserUpdate" ng-model="idUserUpdate" class="form-control" placeholder="Nom ...">
                   </div>
@@ -159,7 +159,7 @@
           </div>
 
           <div class="modal-footer">
-            <button class="btn btn-success btn-lg" ng-click="updateUser();reloadParentPage()">
+            <button class="btn btn-success btn-lg" ng-click="updateUser();reloadParentPage()" class="close" data-dismiss="modal">
               Valider
             </button>
             <button class="btn btn-warning btn-lg" class="close" data-dismiss="modal">

@@ -25,7 +25,7 @@
       <h5>{{project.title}}</h5>
     </a>
       <span class="input-group-btn">
-        <button type="button" class="btn btn-warning glyphicon glyphicon-edit" data-toggle="modal" data-target="#updateModal" ng-click="initProject(project)"></button>
+        <button type="button" class="btn btn-warning glyphicon glyphicon-edit" data-toggle="modal" data-target="#updateModal" ng-click="getUsersforProject(project.id);initProject(project)"></button>
         <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="delete(project.id);reloadPage()"></button>
       </span>
   </div>
@@ -79,7 +79,7 @@
         </div>
 
         <div class="modal-footer">
-          <button class="btn btn-success btn-lg" ng-click="add();reloadParentPage()">
+          <button class="btn btn-success btn-lg" ng-click="add();reloadParentPage()" class="close" data-dismiss="modal">
             Ajouter
           </button>
           <button class="btn btn-warning btn-lg" class="close" data-dismiss="modal">
@@ -146,7 +146,7 @@
         </div>
 
         <div class="modal-footer">
-          <button class="btn btn-success btn-lg" ng-click="updateProject();reloadParentPage()">
+          <button class="btn btn-success btn-lg" ng-click="updateProject();reloadParentPage()" class="close" data-dismiss="modal">
             Valider
           </button>
           <button class="btn btn-warning btn-lg" class="close" data-dismiss="modal">

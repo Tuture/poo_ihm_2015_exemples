@@ -33,21 +33,21 @@
           </div>
         </div>
 
+
+      <div class="form-group">
+        <label class="control-label">Se(s) projet(s) : </label>
         <div ng-repeat="project in projectsForUser">
           <div class="input-group input-group-lg">
             <a  href="#/projects/{{project.id}}" class="list-group-item">
               <h5>{{project.title}}</h5>
             </a>
-      <span class="input-group-btn">
-        <button type="button" class="btn btn-warning glyphicon glyphicon-edit" data-toggle="modal" data-target="#updateModal" ng-click="initProject(project)"></button>
-        <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="delete(project.id);reloadPage()"></button>
-      </span>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="deleteProjectFromUser(currentUser.id, project.id);reloadPage()"></button>
+            </span>
           </div>
         </div>
-
+      </div>
       </div>
     </fieldset>
-  <button type="button" class="btn btn-warning glyphicon glyphicon-edit small" ng-click="modify(currentUser.id)"></button>
-  <button type="button" class="btn btn-danger glyphicon glyphicon-trash small" ng-click="deleteShow(currentUser.id); reloadPage()"></button>
   </button>
 </div>

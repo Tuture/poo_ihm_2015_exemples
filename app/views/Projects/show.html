@@ -26,9 +26,22 @@
           {{currentProject.year}}
         </div>
       </div>
+
+      <div class="form-group">
+        <label class="control-label">Le(s) utilisateurs(s) : </label>
+        <div ng-repeat="user in usersForProject">
+          <div class="input-group input-group-lg">
+            <a  href="#/users/{{user.id}}" class="list-group-item">
+              <h5>{{user.name}} {{user.surname}}</h5>
+            </a>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="deleteUserFromProject(currentProject.id, user.id);reloadPage()"></button>
+            </span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </fieldset>
-  <button type="button" class="btn btn-warning glyphicon glyphicon-edit small" ng-click="modify(currentProject.id)"></button>
-  <button type="button" class="btn btn-danger glyphicon glyphicon-trash small" ng-click="deleteShow(currentProject.id); reloadPage()"></button>
   </button>
 </div>
