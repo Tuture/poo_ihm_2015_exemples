@@ -26,7 +26,9 @@ angular.module('pooIhmExemplesApp')
       $scope.updateRole = function() {
         var roleData = {
           "id": $scope.idUpdate,
-          "name": $scope.nameUpdate
+          "name": $scope.nameUpdate,
+          "UserdId": $scope.UserIdUpdate,
+          "ProjectId": $scope.ProjectIdUpdate
         };
         $http.put('http://poo-ihm-2015-rest.herokuapp.com/api/Roles/' + roleData.id, roleData)
           .success(function (data, status) {
@@ -40,6 +42,8 @@ angular.module('pooIhmExemplesApp')
       $scope.initRole = function(roleToUpdate) {
           $scope.idUpdate = roleToUpdate.id;
           $scope.nameUpdate = roleToUpdate.name;
+          $scope.UserIdUpdate = roleToUpdate.UserdId;
+          $scope.ProjectIdUpdate = roleToUpdate.ProjectId;
       };
 
       $http.get('http://poo-ihm-2015-rest.herokuapp.com/api/Roles')
@@ -49,7 +53,9 @@ angular.module('pooIhmExemplesApp')
 
       $scope.addRole = function() {
         var roleData = {
-          "name": $scope.name
+          "name": $scope.name,
+          "UserId": $scope.userId,
+          "ProjectId": $scope.projectId
         };
         $http.post('http://poo-ihm-2015-rest.herokuapp.com/api/Roles/', roleData)
           .success(function (data, status) {
